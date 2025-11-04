@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -14,6 +14,15 @@ def helloCheryl():
 # Ex route. '/anju' 
 # push to your branch to verify flask is working
 
+#this is how a basic POST request would be defined
+@app.route('/api/test', methods=['POST'])
+def test():
+    data = request.json
+    message = data.get('message')
+    return jsonify({
+        'received': message,
+        'response': 'Flask received your message!'
+    })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
