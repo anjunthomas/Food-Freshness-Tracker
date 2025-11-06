@@ -10,6 +10,12 @@ def hello():
 def helloCheryl():
     return "Hello from Cheryl!"
 
+
+@app.route('/harshika')
+def helloHarshika():
+    return "Hello from Harshika!"
+
+
 #backend developers, create a new route here with your name that returns a similar message
 # Ex route. '/anju' 
 # push to your branch to verify flask is working
@@ -23,6 +29,5 @@ def test():
         'received': message,
         'response': 'Flask received your message!'
     })
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
