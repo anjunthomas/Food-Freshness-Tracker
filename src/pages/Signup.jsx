@@ -5,7 +5,7 @@ function Signup() {
         <div className='signup-container'>
             <div className='form-container'>
                 <form action="#">
-                    {/* Title */}
+                    {/* Title form */}
                     <div className='form_title'>
                         <h1>Sign up!</h1>
                     </div>
