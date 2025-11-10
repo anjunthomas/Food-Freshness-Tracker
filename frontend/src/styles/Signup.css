@@ -47,11 +47,24 @@ body{
     text-align: center;
 }
 
-.form_button{
+.form_button:hover{
+    cursor: pointer;
+}
+
+.form_button_register{
     margin-top: 1em;
     color: white;
     background-color: red;
     border: 0.1px solid black !important;
+}
+.form_button_register:hover{
+    color: black;
+    background-color: white;
+    transition: 0.3s ease;
+}
+.form_button_cancel:hover{
+    background-color: white;
+    transition: 0.3s ease;
 }
 
 /* Common class */

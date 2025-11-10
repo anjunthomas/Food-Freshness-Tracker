@@ -11,27 +11,35 @@ function Signup() {
                     </div>
 
                     {/* Form body */}
-                    
+
                     <div class="user_name">
-                        <input type="text" class="form-control" placeholder="Name" name="name" aria-label="Name"/>
+                        <input type="text" class="form-control" placeholder="Name" name="name" aria-label="Name" />
                     </div>
 
                     <div class="user_email">
-                        <input type="email" class="form-control" name="email" placeholder="Email"/> 
+                        <input type="email" class="form-control" name="email" placeholder="Email" />
                     </div>
 
                     <div class="password">
-                        <input type="password" class="form-control" placeholder="Password"/>
+                        <input type="password" class="form-control" placeholder="Password" />
                     </div>
 
                     <div class="c-password">
-                        <input type="password" class="form-control" placeholder="Confirm Password"/>
+                        <input type="password" class="form-control" placeholder="Confirm Password" />
                     </div>
 
-                    <div class="register">
-                        <a href="#">
-                            <button type="button" class="form-control form_button">Register</button>
-                        </a>
+                    <div class="button-row">
+                        <div class="register">
+                            <a href="#">
+                                <button type="submit" class="form-control form_button form_button_register">Register</button>
+                            </a>
+                        </div>
+
+                        <div class="cancel">
+                            <a href="#">
+                                <button type="reset" class="form-control form_button form_button_cancel">Cancel</button>
+                            </a>
+                        </div>
                     </div>
 
                 </form>
