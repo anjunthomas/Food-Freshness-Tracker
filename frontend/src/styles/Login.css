@@ -10,4 +10,57 @@
     font-size: 3.2em;
     line-height: 1.1;
     text-align: center;
+    color: #028090;
+    font-family: 'Sora', sans-serif;
 }
+
+.white-box{
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-height: 40vh; 
+    width: 526px;
+    height: 360px;
+}
+
+body {
+    background-image: url("/assets/openfridge.jpg");
+    background-size: 100%;
+}
+
+input {
+    color: #545353;
+    font-family: 'Sora', sans-serif;
+}
+
+
+button {
+    color: #ffffff;
+    background-color: #F45B69;
+    font-family: 'Sora', sans-serif;
+}
+
+button:hover {
+    background-color: #d44f5a;
+}
+
+.login-btn {
+    background-color: #028090;
+    color: #ffffff;
+}
+
+.login-btn:hover {
+    background-color: #087685;
+}
+
+form input, form button {
+    width: 482px;
+    height: 38px;
+    box-sizing: border-box;
+    border: 1.4px solid;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+
