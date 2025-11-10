@@ -1,4 +1,21 @@
+@font-face{
+    font-family: 'Sora';
+    src: url(../fonts/Sora-Bold.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .signup-container{
+    width: 100vw;
+
+    background: linear-gradient(rgba(179, 190, 178, 0.4), rgba(179, 190, 178, 0.4)), url(../../public/assets/openfridge.jpg) no-repeat center center;
+    background-size: cover;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,8 +23,66 @@
     min-height: 100vh;
 }
 
-.signup-container h1{
+.form-container{
+    margin-top: 2%;
+
+    min-width: 35%;
+    min-height: 55vh;
+
+    padding: 24px 24px 35px;
+
+    background-color: #ffff;
+    backdrop-filter: blur(100px);
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.form_title h1{
+    margin: 15px auto 30px;
+    font-family: 'Sora', sans-serif;
     font-size: 3.2em;
+    color: #028090;
     line-height: 1.1;
     text-align: center;
+}
+
+.form_button:hover{
+    cursor: pointer;
+}
+
+.form_button_register{
+    margin-top: 1em;
+    color: white;
+    background-color: red;
+    border: 0.1px solid black !important;
+}
+.form_button_register:hover{
+    color: black;
+    background-color: white;
+    transition: 0.3s ease;
+}
+.form_button_cancel:hover{
+    background-color: white;
+    transition: 0.3s ease;
+}
+
+/* Common class */
+.form-control{
+    width: 100%;
+    padding: 14px;
+
+    margin-bottom: 1.1em;
+
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 0.15px solid rgba(179, 190, 178, 0.7);
+    outline: none;
+
+    font-size: 1.1em;
+    line-height: 1.1;
+}
+
+.form-control::placeholder{
+    color: rgba(179, 190, 178, 0.9);
 }
