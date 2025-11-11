@@ -4,6 +4,13 @@ import re
 
 app = Flask(__name__)
 
+DATABASE = 'food_freshness_tracker.db'
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 @app.route('/')
 def hello():
     return "Hello World, this is the food freshness tracker made by Cheryl, Harshika, Thaira, Danae, and Tasneem!"
@@ -17,6 +24,22 @@ def helloCheryl():
 def helloHarshika():
     return "Hello from Harshika!"
 
+connection = sqlite3.connect('food_freshness_tracker.db')
+cursor = connection.cursor()
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users ( 
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL, 
+    password TEXT NOT NULL,
+    current_streak INTEGER DEFAULT 0
+    );
+''')
+
+# save changes and close the connection
+connection.commit()
+connection.close()
 
 @app.route('/registerUser', methods=['POST'])
 def registerUser():
