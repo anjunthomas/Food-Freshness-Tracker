@@ -1,37 +1,38 @@
 import sqlite3
 
 # defining connection and cursor to connect to a database
-connection = sqlite3.connect('food_freshness_tracker.db')
-cursor = connection.cursor()
+def create_tables():
+    connection = sqlite3.connect('food_freshness_tracker.db')
+    cursor = connection.cursor()
 
-# create users table
-cursor.execute('''
-    CREATE TABLE users ( 
-    id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    name TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL, 
-    password TEXT NOT NULL,
-    current_streak INTEGER DEFAULT 0
-);
-''')
+    # create users table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users ( 
+        id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL, 
+        password TEXT NOT NULL,
+        current_streak INTEGER DEFAULT 0
+    );
+    ''')
 
-# create items table
-cursor.execute('''
-    CREATE TABLE users ( 
-    id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    user_id INTEGER NOT NULL,
-    name TEXT NOT NULL,
-    quantity INTEGER, 
-    date_purchased TEXT,
-    expiration_date TEXT,
-    category TEXT,
-    brand TEXT
-);
-''')
+    # create items table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users ( 
+        id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        user_id INTEGER NOT NULL,
+        name TEXT NOT NULL,
+        quantity INTEGER, 
+        date_purchased TEXT,
+        expiration_date TEXT,
+        category TEXT,
+        brand TEXT
+    );
+    ''')
 
-# save changes and close the connection
-connection.commit()
-connection.close()
+    # save changes and close the connection
+    connection.commit()
+    connection.close()
 
 # function for database connection
 def get_connection():

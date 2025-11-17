@@ -24,7 +24,7 @@ def helloHarshika():
 #this is how a basic POST request would be defined
 @app.route('/api/test', methods=['POST'])
 def test():
-    data = request.json
+    data = request.get_json()
     message = data.get('message')
     return jsonify({
         'received': message,
@@ -35,7 +35,7 @@ def test():
 @app.route('/api/login', methods=['POST'])
 def login():
     # get the request
-    data = request.json()
+    data = request.get_json()
     # accept an email and password
     email = data.get('email')
     password = data.get('password')
@@ -45,7 +45,7 @@ def login():
     cursor = connect.cursor()
 
     # check if the user exists in the database
-    cursor.execute('SELECT id, name, email FROM users WHERE email = ? AND password = ?', (email, password))
+    cursor.execute('SELECT id, name, email, password FROM users WHERE email = ?', (email,))
     user = cursor.fetchone()
 
     # if not found, return HTTP 401
