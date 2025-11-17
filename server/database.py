@@ -15,7 +15,26 @@ cursor.execute('''
 );
 ''')
 
+# create items table
+cursor.execute('''
+    CREATE TABLE users ( 
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    user_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    quantity INTEGER, 
+    date_purchased TEXT,
+    expiration_date TEXT,
+    category TEXT,
+    brand TEXT
+);
+''')
+
 # save changes and close the connection
 connection.commit()
 connection.close()
 
+# function for database connection
+def get_connection():
+    connect = sqlite3.connect('food_freshness_tracker.db')
+    connect.row_factory = sqlite3.Row
+    return connect

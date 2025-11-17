@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import sqlite3
+from database import create_tables, get_connection
 
 app = Flask(__name__)
 
@@ -30,5 +30,39 @@ def test():
         'received': message,
         'response': 'Flask received your message!'
     })
+
+# login route
+@app.route('/api/login', methods=['POST'])
+def login():
+    # get the request
+    data = request.json()
+    # accept an email and password
+    email = data.get('email')
+    password = data.get('password')
+
+    # connect to the database
+    connect = get_connection()
+    cursor = connect.cursor()
+
+    # check if the user exists in the database
+    cursor.execute('SELECT id, name, email FROM users WHERE email = ? AND password = ?', (email, password))
+    user = cursor.fetchone()
+
+    # if not found, return HTTP 401
+    # check user
+    if user is None: 
+        return jsonify({'error': 'Invalid email or password'}), 401
+    # check that password matches user
+    if password != user["password"]:
+        return jsonify({'error': 'Invalid email or password'}), 401
+    
+    # if found, return HTTP 200 & the user info: the id, name, and email
+    user_info = {
+        'id': user["id"],
+        'name': user["name"],
+        'email': user["email"]
+    }
+    return jsonify(user_info), 200
+    
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
