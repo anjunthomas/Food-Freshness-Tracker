@@ -90,7 +90,7 @@ function Signup() {
                         </div>
 
                         <div className="cancel">
-                            <button type="button" className="form-control form_button form_button_cancel" onClick={handleCancel}>Cancel</button>
+                            <button type="button" className="form-control form_button form_button_cancel">Cancel</button>
                         </div>
                     </div>
 
