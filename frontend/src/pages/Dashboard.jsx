@@ -1,5 +1,68 @@
 import { useState } from 'react'
 import '../styles/Dashboard.css'
+import axios from 'axios'
+
+const emojiDictionary = {
+    // fruits
+    apple: "🍎",
+    greenApple: "🍏",
+    pear: "🍐",
+    peach: "🍑",
+    cherries: "🍒",
+    grapes: "🍇",
+    melon: "🍈",
+    watermelon: "🍉",
+    strawberry: "🍓",
+    blueberries: "🫐",
+    kiwi: "🥝",
+    banana: "🍌",
+    lemon: "🍋",
+    orange: "🍊",
+    pineapple: "🍍",
+    mango: "🥭",
+    coconut: "🥥",
+
+    // vegetables
+    carrot: "🥕",
+    potato: "🥔",
+    corn: "🌽",
+    tomato: "🍅",
+    onion: "🧅",
+    garlic: "🧄",
+    broccoli: "🥦",
+    cucumber: "🥒",
+    greens: "🥬",
+    mushroom: "🍄",
+    pepper: "🫑",
+    chili: "🌶️",
+    avocado: "🥑",
+
+    // meat & protein
+    beef: "🥩",
+    chicken: "🍗",
+    fish: "🐟",
+    shrimp: "🦐",
+    crab: "🦀",
+    lobster: "🦞",
+    bacon: "🥓",
+    sausage: "🌭",
+    egg: "🥚",
+    beans: "🫘",
+
+    // dairy
+    milk: "🥛",
+    cheese: "🧀",
+    butter: "🧈",
+    cream: "🍶",
+    yogurt: "🥣",
+    iceCream: "🍨",
+
+    // grains 
+    bread: "🍞",
+    baguette: "🥖",
+    croissant: "🥐",
+    rice: "🍚",
+};
 
 function Dashboard() {
     const [showForm, setShowForm] = useState(false)
@@ -17,12 +80,46 @@ function Dashboard() {
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('New item:', formData)
-        alert(`Added ${formData.name} to fridge!`)
-        setShowForm(false) // hide after submission
-    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // temporary sample user
+        const user_id = "12345";
+
+        const newItem = {
+            name: formData.name,
+            quantity: formData.quantity,
+            datePurchased: formData.datePurchased,
+            expirationDate: formData.expirationDate,
+            category: formData.category,
+            brand: formData.brand,
+            user_id: user_id,
+        };
+
+        axios
+            .post("http://localhost:5000/api/add-item", newItem)
+            .then((response) => {
+                console.log("Item added succesfully: ", response.data);
+                alert(`Added ${formData.name} to fridge!`);
+
+                // reset form
+                setFormData({
+                    name: '',
+                    quantity: '',
+                    datePurchased: '',
+                    expirationDate: '',
+                    category: '',
+                    brand: '',
+                });
+
+                setShowForm(false);
+
+            })
+            .catch((error) => {
+                console.error("Error adding item:", error);
+                alert(`Error adding item`);
+            });
+    };
 
     const handleCancel = () => {
         setFormData({
