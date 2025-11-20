@@ -20,12 +20,12 @@ function Login() {
         }
 
         try {
-            const response = await axios.post("/api/login", {
+            const response = await axios.post("http://localhost:5000/api/login", {
                 email,
                 password
             });
 
-            localStorage.setItem("userId", response.data.userId);
+            localStorage.setItem("userId", response.data.id);
 
             navigate("/dashboard");
 
