@@ -36,6 +36,12 @@ function Signup() {
             alert("All fields must be filled!");
             return;
         }
+
+        if(password.length < 8)
+        {
+            alert("The password must be at least 8 characters long!");
+            return;
+        }
             
         if (password !== confirmPassword)
         {
@@ -86,11 +92,11 @@ function Signup() {
 
                     <div className="button-row">
                         <div class="register">
-                            <button type="submit" className="form-control form_button form_button_register">Register</button>
+                            <button type="submit" className="form-control form_button form_button_register" onClick={handleSubmit}>Register</button>
                         </div>
 
                         <div className="cancel">
-                            <button type="button" className="form-control form_button form_button_cancel">Cancel</button>
+                            <button type="button" className="form-control form_button form_button_cancel" onClick={handleCancel}>Cancel</button>
                         </div>
                     </div>
 
