@@ -18,7 +18,7 @@ def create_tables():
 
     # create items table
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS users ( 
+        CREATE TABLE IF NOT EXISTS items ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         user_id INTEGER NOT NULL,
         name TEXT NOT NULL,

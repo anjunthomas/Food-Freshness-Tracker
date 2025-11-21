@@ -62,6 +62,7 @@ const emojiDictionary = {
     baguette: "🥖",
     croissant: "🥐",
     rice: "🍚",
+    cereal: "🥣",
 };
 
 function Dashboard() {
