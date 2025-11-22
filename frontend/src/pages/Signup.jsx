@@ -44,11 +44,23 @@ function Signup() {
         }
 
         console.log("Form submitted with: ", {name, email, password});
-        alert("Validation Successful!");
+        try {
+        const response = await axios.post("http://localhost:5000/api/registerUser", {
+            name: name,
+            email: email,
+            password: password
+        });
 
-        // Redirect to login page
+        console.log("Signup successful:", response.data);
+        alert("Account created successfully!");
+
         window.location.href = '/login';
+
+    } catch (error) {
+        console.error("Signup error:", error.response?.data || error.message);
+        alert("Signup failed. Check console for details.");
     }
+};
 
     const handleCancel = () => {
         setName('');
