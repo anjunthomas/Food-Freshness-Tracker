@@ -90,6 +90,10 @@ function Signup() {
                         <input type="password" className="form-control" placeholder="Confirm Password" value={confirmPassword} onChange={handleConfirmPassword}/>
                     </div>
 
+                    <div className='login'>
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+
                     <div className="button-row">
                         <div class="register">
                             <button type="submit" className="form-control form_button form_button_register" onClick={handleSubmit}>Register</button>
