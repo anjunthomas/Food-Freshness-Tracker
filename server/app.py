@@ -149,5 +149,41 @@ def addItem():
     except Exception as e:
         return jsonify({'error': 'adding item failed', 'details': str(e)}), 500
     
+# GET endpoint to fetch all items for a user
+@app.route('/api/items/<int:user_id>', methods=['GET'])
+def get_items(user_id):
+    try:
+        # connect to database
+        connect = get_connection()
+        cursor = connect.cursor()
+
+        # fetch items for user
+        cursor.execute('SELECT * FROM items WHERE user_id = ?', (user_id,))
+        rows = cursor.fetchall()
+        # always close connection
+        connect.close()
+
+        # convert row objects to dictionaries for jsonify to handle
+        items = [
+            {
+                'id': row['id'],
+                'user_id': row['user_id'],
+                'name': row['name'],
+                'quantity': row['quantity'],
+                'date_purchased': row['date_purchased'],
+                'expiration_date': row['expiration_date'],
+                'category': row['category'],
+                'brand': row['brand']
+            }
+            for row in rows
+        ]
+        return jsonify(items), 200
+    
+    except Exception as e:
+        return jsonify({
+            'error': 'Failed to fetch items',
+            'details': str(e)
+        }), 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
