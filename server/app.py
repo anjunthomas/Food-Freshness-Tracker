@@ -31,16 +31,15 @@ def test():
         'response': 'Flask received your message!'
     })
 
-@app.route('/registerUser', methods=['POST'])
+@app.route('/api/registerUser', methods=['POST'])
 def registerUser():
     data = request.get_json(silent=True) or {}
-    firstname = data.get('firstName')
-    username = data.get('username')
+    name = data.get('name')
     email = data.get('email')
     password = data.get('password')
 
     # check required fields
-    missing = [name for name, val in (('firstName', firstname), ('username', username), ('email', email), ('password', password)) if not val]
+    missing = [name for name, val in (('name', name), ('email', email), ('password', password)) if not val]
     if missing:
         return jsonify({'error': 'Missing required fields', 'missing': missing}), 400
 
@@ -50,12 +49,12 @@ def registerUser():
         cursor.execute('''
                 INSERT INTO users(name, email, password)
                 VALUES (?, ?, ?)
-        ''', (firstname, email, password))
+        ''', (name, email, password))
         connect.commit()
         connect.close()
 
         return jsonify({
-            'message': f'User {username} ({firstname}) registered successfully!',
+            'message': f'Use ({name}) registered successfully!',
             'email': email
         }), 201
     except sqlite3.IntegrityError: # this is to handle duplicate emails
