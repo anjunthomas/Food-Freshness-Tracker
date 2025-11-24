@@ -183,6 +183,9 @@ function Dashboard() {
                 </button>
             )}
 
+            {/* Dim Background */}
+            {showForm && <div className="overlay"></div>}
+
             {/* Form Shown */}
             {showForm && (
                 <div className="form-container">
