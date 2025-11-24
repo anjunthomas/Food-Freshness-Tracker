@@ -47,22 +47,16 @@ body{
     text-align: center;
 }
 
-.form_button:hover{
-    cursor: pointer;
-}
-
-.form_button_register{
+.form_button{
     margin-top: 1em;
+    padding: 10px !important;
     color: white;
     background-color: red;
     border: 0.1px solid black !important;
 }
-.form_button_register:hover{
+.form_button:hover{
+    cursor: pointer;
     color: black;
-    background-color: white;
-    transition: 0.3s ease;
-}
-.form_button_cancel:hover{
     background-color: white;
     transition: 0.3s ease;
 }
