@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 from database import create_tables, get_connection
 import sqlite3
 from datetime import datetime
+from flask_cors import CORS
 
 create_tables()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello():
