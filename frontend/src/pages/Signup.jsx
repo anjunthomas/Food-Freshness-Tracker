@@ -5,7 +5,7 @@ import axios from 'axios';
 function Signup() {
     // Sign up state
     const [name, setName] = useState('');
-    const [username, setUsername] = useState(''); // new username field
+    const [username, setUsername] = useState(''); 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
