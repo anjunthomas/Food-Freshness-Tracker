@@ -35,50 +35,52 @@ function Login() {
     };
 
     return (
-        <div className="login-container">
-            <div className="white-box">
-                <h1>Sign In!</h1>
+        <div className="login-wrapper">
+            <div className="login-container">
+                <div className="white-box">
+                    <h1>Sign In!</h1>
 
-                <form onSubmit={handleSubmit}>
-                    
-                    <p className="error-text">{error}</p>
+                    <form onSubmit={handleSubmit}>
+                        
+                        <p className="error-text">{error}</p>
 
-                    <input
-                        type="email"
-                        placeholder=" Email"
-                        className="field"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                        <input
+                            type="email"
+                            placeholder=" Email"
+                            className="field"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    <br /><br />
+                        <br /><br />
 
-                    <input
-                        type="password"
-                        placeholder=" Password"
-                        className="field"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        <input
+                            type="password"
+                            placeholder=" Password"
+                            className="field"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <br /><br />
+                        <br /><br />
 
-                    <input
-                        type="submit"
-                        value="Login"
-                        className="login-btn"
-                    />
+                        <input
+                            type="submit"
+                            value="Login"
+                            className="login-btn"
+                        />
 
-                    <br /><br />
+                        <br /><br />
 
-                    <button type="reset" onClick={() => {
-                        setEmail("");
-                        setPassword("");
-                        setError("");
-                    }}>
-                        Cancel
-                    </button>
-                </form>
+                        <button type="reset" onClick={() => {
+                            setEmail("");
+                            setPassword("");
+                            setError("");
+                        }}>
+                            Cancel
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

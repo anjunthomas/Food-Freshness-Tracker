@@ -4,6 +4,13 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    width: 100vw;
+    background-image: url("/assets/openfridge.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-container h1{
@@ -25,11 +32,6 @@
     height: auto;       
     padding: 20px 0;    
     padding-bottom: 30px;
-}
-
-body {
-    background-image: url("/assets/openfridge.jpg");
-    background-size: 100%;
 }
 
 input {

@@ -1,4 +1,5 @@
 import '../styles/App.css'
+import '../s'
 import { Link } from 'react-router-dom'
 
 

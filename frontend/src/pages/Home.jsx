@@ -8,8 +8,10 @@ function Home() {
   }
 
   return (
-    <div className="home-container" onClick={handleClick}>
-      <h1></h1>
+    <div className="home-wrapper">
+      <div className="home-container" onClick={handleClick}>
+        <h1></h1>
+      </div>
     </div>
   )
 }
