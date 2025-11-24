@@ -17,6 +17,7 @@ body, html {
     background-size: cover;       
     background-position: center;  
     background-repeat: no-repeat;
+    position: relative;
 }
 
 .dashboard-container h1{
@@ -24,6 +25,16 @@ body, html {
     line-height: 1.1;
     text-align: center;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);                    
+}
+
 
 .form-container {
     background: white;
@@ -111,3 +122,46 @@ select.form-control {
     background-color: #c0392b;
 }
 
+.add-food-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background-color: #4202b9;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.add-food-btn:hover {
+    background-color: #5304e5;
+}
+
+
+.fridge-items {
+    display: flex;
+    flex-direction: row;      
+    gap: 30px;               
+    position: absolute;
+    top: 60%;                 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.fridge-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.emoji {
+    font-size: 8rem;       
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
