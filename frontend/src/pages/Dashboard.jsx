@@ -90,15 +90,15 @@ function Dashboard() {
         const newItem = {
             name: formData.name,
             quantity: formData.quantity,
-            datePurchased: formData.datePurchased,
-            expirationDate: formData.expirationDate,
+            date_purchased: formData.datePurchased,
+            expiration_date: formData.expirationDate,
             category: formData.category,
             brand: formData.brand,
             user_id: user_id,
         };
 
         axios
-            .post("http://localhost:5000/api/add-item", newItem)
+            .post("http://127.0.0.1:5000/api/add-item", newItem)
             .then((response) => {
                 console.log("Item added succesfully: ", response.data);
                 alert(`Added ${formData.name} to fridge!`);
@@ -148,15 +148,15 @@ function Dashboard() {
         {showForm && (
             <div className="form-container">
             <form onSubmit={handleSubmit}>
-                <div class="form_title">
+                <div className="form_title">
                 <h1>Add a New Item</h1>
                 </div>
 
                 {/* Item Name */}
-                <div class="item_name">
+                <div className="item_name">
                 <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Item Name *"
                     name="name"
                     value={formData.name}
@@ -166,10 +166,10 @@ function Dashboard() {
                 </div>
 
                 {/* Quantity*/}
-                <div class="item_quantity">
+                <div className="item_quantity">
                 <input
                     type="number"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Quantity *"
                     name="quantity"
                     value={formData.quantity}
@@ -180,34 +180,34 @@ function Dashboard() {
                 </div>
 
                 {/* Date Purchased */}
-                <div class="date_purchased">
-                <label class="form-label">Date Purchased *</label>
+                <div className="date_purchased">
+                <label className="form-label">Date Purchased (optional)*</label>
                 <input
                     type="date"
-                    class="form-control"
+                    className="form-control"
                     name="datePurchased"
                     value={formData.datePurchased}
+                    onChange={handleChange}
+                />
+                </div>
+
+                {/* Expiration */}
+                <div className="expiration_date">
+                <label className="form-label">Expiration Date</label>
+                <input
+                    type="date"
+                    className="form-control"
+                    name="expirationDate"
+                    value={formData.expirationDate}
                     onChange={handleChange}
                     required
                 />
                 </div>
 
-                {/* Expiration */}
-                <div class="expiration_date">
-                <label class="form-label">Expiration Date (optional)</label>
-                <input
-                    type="date"
-                    class="form-control"
-                    name="expirationDate"
-                    value={formData.expirationDate}
-                    onChange={handleChange}
-                />
-                </div>
-
                 {/* Category */}
-                <div class="item_category">
+                <div className="item_category">
                 <select
-                    class="form-control"
+                    className="form-control"
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
@@ -223,10 +223,10 @@ function Dashboard() {
                 </div>
 
                 {/* Brand */}
-                <div class="item_brand">
+                <div className="item_brand">
                 <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Brand (optional)"
                     name="brand"
                     value={formData.brand}
@@ -235,21 +235,21 @@ function Dashboard() {
                 </div>
 
                 {/* Buttons */}
-                <div class="button-row">
-                <div class="cancel">
+                <div className="button-row">
+                <div className="cancel">
                     <button
                     type="button"
-                    class="form-control form_button form_button_cancel"
+                    className="form-control form_button form_button_cancel"
                     onClick={handleCancel}
                     >
                     Back
                     </button>
                 </div>
 
-                <div class="add">
+                <div className="add">
                     <button
                     type="submit"
-                    class="form-control form_button form_button_register"
+                    className="form-control form_button form_button_register"
                     >
                     Add
                     </button>
