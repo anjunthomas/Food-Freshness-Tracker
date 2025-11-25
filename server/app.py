@@ -117,7 +117,7 @@ def addItem():
                 ('user_id', user_id), 
                 ('name', name), 
                 ('quantity', quantity), 
-                ('expiration_date', expiration_date),
+                ('date_purchased', date_purchased),
                 ('category', category),
                 # didn't add brand and date_purchased here because we're making those optional
             ) if not val

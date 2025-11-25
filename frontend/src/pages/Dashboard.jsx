@@ -66,9 +66,8 @@ const emojiDictionary = {
 };
 
 function Dashboard() {
-
     const [items, setItems] = useState([]);
-    const [showForm, setShowForm] = useState(false)
+    const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         quantity: '',
@@ -76,7 +75,7 @@ function Dashboard() {
         expirationDate: '',
         category: '',
         brand: '',
-    })
+    });
 
     function getEmoji(name) {
         if (!name) return "❓";
@@ -86,26 +85,35 @@ function Dashboard() {
 
     // Fetch items on load
     useEffect(() => {
-        const user_id = localStorage.getItem("user_id") || "12345";
+        const user_id = localStorage.getItem("user_id");
 
-        axios.get(`http://127.0.0.1:5000/api/items/${user_id}`)
-            .then(res => {
-                setItems(res.data);
-            })
-            .catch(err => {
-                console.error("Error fetching items:", err);
-            });
+        if (!user_id) {
+            console.warn("No user logged in — cannot fetch items.");
+            return;
+        }
+
+        axios
+            .get(`http://127.0.0.1:5000/api/items/${user_id}`)
+            .then(res => setItems(res.data))
+            .catch(err => console.error("Error fetching items:", err));
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData((prev) => ({ ...prev, [name]: value }))
-    }
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const user_id = "12345";
+        const user_id = localStorage.getItem("user_id");
+        if (!user_id) {
+            alert("Error: user not logged in");
+            return;
+        }
 
         const newItem = {
             name: formData.name,
@@ -124,7 +132,8 @@ function Dashboard() {
                 alert(`Added ${formData.name} to fridge!`);
 
                 // re-fetch items so dashboard updates immediately
-                axios.get(`http://127.0.0.1:5000/api/items/${user_id}`)
+                axios
+                    .get(`http://127.0.0.1:5000/api/items/${user_id}`)
                     .then(res => setItems(res.data))
                     .catch(err => console.error(err));
 
@@ -142,7 +151,7 @@ function Dashboard() {
             })
             .catch((error) => {
                 console.error("Error adding item:", error);
-                alert(`Error adding item`);
+                alert("Error adding item");
             });
     };
 
@@ -154,9 +163,9 @@ function Dashboard() {
             expirationDate: '',
             category: '',
             brand: '',
-        })
-        setShowForm(false) // close form when canceled
-    }
+        });
+        setShowForm(false);
+    };
 
     return (
         <div className="dashboard-container">
@@ -220,25 +229,25 @@ function Dashboard() {
                         </div>
 
                         <div className="date_purchased">
-                            <label className="form-label">Date Purchased (optional)*</label>
+                            <label className="form-label">Date Purchased *</label>
                             <input
                                 type="date"
                                 className="form-control"
                                 name="datePurchased"
                                 value={formData.datePurchased}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className="expiration_date">
-                            <label className="form-label">Expiration Date</label>
+                            <label className="form-label">Expiration Date (optional)</label>
                             <input
                                 type="date"
                                 className="form-control"
                                 name="expirationDate"
                                 value={formData.expirationDate}
                                 onChange={handleChange}
-                                required
                             />
                         </div>
 

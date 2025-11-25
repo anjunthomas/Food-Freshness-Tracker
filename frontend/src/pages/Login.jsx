@@ -25,7 +25,7 @@ function Login() {
                 password
             });
 
-            localStorage.setItem("userId", response.data.id);
+            localStorage.setItem("user_id", response.data.id);
 
             navigate("/dashboard");
 
