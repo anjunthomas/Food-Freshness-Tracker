@@ -107,12 +107,12 @@ function Signup() {
                     </div>
 
                     <div className="button-row">
-                        <div class="register">
-                            <button type="submit" className="form-control form_button form_button_register" onClick={handleSubmit}>Register</button>
-                        </div>
-
                         <div className="cancel">
                             <button type="button" className="form-control form_button form_button_cancel" onClick={handleCancel}>Cancel</button>
+                        </div>
+                        
+                        <div class="register">
+                            <button type="submit" className="form-control form_button form_button_register" onClick={handleSubmit}>Register</button>
                         </div>
                     </div>
 
