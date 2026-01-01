@@ -167,11 +167,40 @@ function Dashboard() {
         setShowForm(false);
     };
 
+    //The delete function
+    const handleDelete = async (itemId, itemName) => {
+        //Delete Confirmation
+        const isConfirmed = window.confirm(
+            `Are you sure you want to delete "${itemName}"?`
+        );
+
+        if(!isConfirmed){
+            return;
+        }
+
+        try {
+            //Call delete endpoint
+            await axios.delete(`http://127.0.0.1:5000/api/items/api/items/${itemId}`);
+
+            //Removing the item
+            setItems(items.filter(item => item.id !== itemId));
+
+            //Success
+            alert(`"${itemName}" deleted successfully!`);
+
+        } catch {
+            //Error message
+            console.error("Delete error: ", error);
+            alert(`Delete failed: ${error.response?.data?.message || "Please try again later."}`);
+        }
+    };
+
     return (
         <div className="dashboard-container">
 
             {/* Display Items */}
-            {!showForm && (
+            {/*Previous display item*/}
+            {/*!showForm && (
                 <div className="fridge-items">
                     {items.length === 0 ? (
                         <p>No items yet!</p>
@@ -182,6 +211,38 @@ function Dashboard() {
                             </div>
                         ))
                     )}
+                </div>
+            )*/}
+            {/*New display item*/}
+
+            {!showForm && (
+                <div className="fridge-items-container">                    
+                    <div className="fridge-items-scroll">
+                        {items.length === 0 ? (
+                            <p className="no-items">No items yet!</p>
+                        ) : (
+                            items.map((item) => (
+                                <div key={item.id} className="fridge-items">
+                                    <div className="emoji">{getEmoji(item.name)}</div>
+                                    <div className="item-info">
+                                        <h3>{item.name}</h3>
+                                        <p className="quantity">Quantity: {item.quantity}</p>
+                                        {item.expiration_date && (
+                                            <p className="expiration">
+                                                Expires: {new Date(item.expiration_date).toLocaleDateString()}
+                                            </p>
+                                        )}
+                                        {item.brand && (
+                                            <p className="brand">Brand: {item.brand}</p>
+                                        )}
+                                        <button className="delete-btn" onClick={() => handleDelete(item.id, item.name)}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
                 </div>
             )}
 
